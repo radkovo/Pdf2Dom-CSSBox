@@ -25,12 +25,12 @@ import java.net.URL;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.fit.cssbox.awt.GraphicsEngine;
+import org.fit.cssbox.awt.GraphicsVisualContext;
 import org.fit.cssbox.css.DOMAnalyzer;
 import org.fit.cssbox.css.FontTable;
 import org.fit.cssbox.layout.BrowserConfig;
 import org.fit.cssbox.layout.Dimension;
-import org.fit.cssbox.layout.GraphicsEngine;
-import org.fit.cssbox.layout.GraphicsVisualContext;
 import org.fit.cssbox.layout.Rectangle;
 import org.fit.cssbox.layout.VisualContext;
 import org.slf4j.Logger;

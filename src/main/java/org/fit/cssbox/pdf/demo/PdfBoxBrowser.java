@@ -29,6 +29,8 @@ import javax.swing.JFrame;
 import javax.swing.tree.DefaultTreeModel;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.fit.cssbox.awt.BrowserCanvas;
+import org.fit.cssbox.awt.GraphicsEngine;
 import org.fit.cssbox.css.CSSNorm;
 import org.fit.cssbox.css.DOMAnalyzer;
 import org.fit.cssbox.demo.BoxBrowser;
@@ -36,9 +38,7 @@ import org.fit.cssbox.io.DOMSource;
 import org.fit.cssbox.io.DefaultDOMSource;
 import org.fit.cssbox.io.DefaultDocumentSource;
 import org.fit.cssbox.io.DocumentSource;
-import org.fit.cssbox.layout.BrowserCanvas;
 import org.fit.cssbox.layout.Dimension;
-import org.fit.cssbox.layout.GraphicsEngine;
 import org.fit.cssbox.layout.Viewport;
 import org.fit.cssbox.pdf.PdfEngine;
 import org.slf4j.Logger;
