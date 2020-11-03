@@ -286,7 +286,12 @@ public class CSSBoxTree extends PDFDomTree
         {
             BlockReplacedBox rbox = new BlockReplacedBox((Element) n, parent.getVisualContext().create());
             rbox.setViewport(viewport);
-            rbox.setContentObj(new ReplacedImage(rbox, rbox.getVisualContext(), baseurl, n.getAttribute("src")));
+            
+            ReplacedImage img = new ReplacedImage(rbox, rbox.getVisualContext(), baseurl, n.getAttribute("src"));
+            if (config.getLoadImages())
+                img.setImage(parent.getVisualContext().getImageLoader().loadImage(img.getUrl()));
+
+            rbox.setContentObj(img);
             root = rbox;
         }
         else
