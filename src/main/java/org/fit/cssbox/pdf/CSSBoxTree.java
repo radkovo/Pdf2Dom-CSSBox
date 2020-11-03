@@ -440,6 +440,8 @@ public class CSSBoxTree extends PDFDomTree
             
             ret.push(createDeclaration("width", tf.createLength(w, unit)));
             ret.push(createDeclaration("height", tf.createLength(h, unit)));
+            ret.push(createDeclaration("overflow-x", tf.createIdent("hidden")));
+            ret.push(createDeclaration("overflow-y", tf.createIdent("hidden")));
         }
         else
             log.warn("No media box found");
@@ -459,21 +461,23 @@ public class CSSBoxTree extends PDFDomTree
      */
     protected NodeData createRectangleStyle(float x, float y, float width, float height, boolean stroke, boolean fill)
     {
-        float lineWidth = transformLength((float) getGraphicsState().getLineWidth());
-        float lw = (lineWidth < 1f) ? 1f : lineWidth;
-        float wcor = stroke ? lw : 0.0f;
+        float lineWidth = transformWidth(getGraphicsState().getLineWidth());
+        float wcor = stroke ? lineWidth : 0.0f;
+        float strokeOffset = wcor == 0 ? 0 : wcor / 2;
+        width = width - wcor < 0 ? 1 : width - wcor;
+        height = height - wcor < 0 ? 1 : height - wcor;
         
         NodeData ret = CSSFactory.createNodeData();
         TermFactory tf = CSSFactory.getTermFactory();
         ret.push(createDeclaration("position", tf.createIdent("absolute")));
-        ret.push(createDeclaration("left", tf.createLength(x, unit)));
-        ret.push(createDeclaration("top", tf.createLength(y, unit)));
-        ret.push(createDeclaration("width", tf.createLength(width - wcor, unit)));
-        ret.push(createDeclaration("height", tf.createLength(height - wcor, unit)));
+        ret.push(createDeclaration("left", tf.createLength(x - strokeOffset, unit)));
+        ret.push(createDeclaration("top", tf.createLength(y - strokeOffset, unit)));
+        ret.push(createDeclaration("width", tf.createLength(width, unit)));
+        ret.push(createDeclaration("height", tf.createLength(height, unit)));
         
         if (stroke)
         {
-            ret.push(createDeclaration("border-width", tf.createLength(lw, unit)));
+            ret.push(createDeclaration("border-width", tf.createLength(lineWidth, unit)));
             ret.push(createDeclaration("border-style", tf.createIdent("solid")));
             String color = colorString(getGraphicsState().getStrokingColor());
             ret.push(createDeclaration("border-color", tf.createColor(color)));
