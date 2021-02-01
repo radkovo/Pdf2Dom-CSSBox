@@ -15,7 +15,7 @@
 
 	<groupId>net.sf.cssbox</groupId>
 	<artifactId>pdf2dom-cssbox</artifactId>
-	<version>2.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<name>Pdf2Dom-CSSBox</name>
 	<description>CSSBox bindings for Pdf2Dom</description>
 	<url>http://cssbox.sourceforge.net/pdf2dom</url>
