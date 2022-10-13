@@ -47,6 +47,7 @@ import org.fit.cssbox.layout.TextBox;
 import org.fit.cssbox.layout.Viewport;
 import org.fit.cssbox.layout.VisualContext;
 import org.fit.pdfdom.BoxStyle;
+import org.fit.pdfdom.HtmlDivLine;
 import org.fit.pdfdom.PDFDomTree;
 import org.fit.pdfdom.PathSegment;
 import org.fit.pdfdom.TextMetrics;
@@ -500,7 +501,7 @@ public class CSSBoxTree extends PDFDomTree
     
     protected NodeData createLineStyle(float x1, float y1, float x2, float y2)
     {
-        HtmlDivLine line = new HtmlDivLine(x1, y1, x2, y2);
+        HtmlDivLine line = new HtmlDivLine(x1, y1, x2, y2, transformWidth(getGraphicsState().getLineWidth()));
         String bside = line.getBorderSide();
 
         NodeData ret = CSSFactory.createNodeData();
